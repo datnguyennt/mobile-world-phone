@@ -1,0 +1,16 @@
+E:\Project\CSharp\THUCHANH\BAICUOIKY\Models\bin\Debug\Models.dll.config
+E:\Project\CSharp\THUCHANH\BAICUOIKY\Models\bin\Debug\Models.dll
+E:\Project\CSharp\THUCHANH\BAICUOIKY\Models\bin\Debug\Models.pdb
+E:\Project\CSharp\THUCHANH\BAICUOIKY\Models\bin\Debug\EntityFramework.dll
+E:\Project\CSharp\THUCHANH\BAICUOIKY\Models\bin\Debug\EntityFramework.SqlServer.dll
+E:\Project\CSharp\THUCHANH\BAICUOIKY\Models\bin\Debug\EntityFramework.xml
+E:\Project\CSharp\THUCHANH\BAICUOIKY\Models\bin\Debug\EntityFramework.SqlServer.xml
+E:\Project\CSharp\THUCHANH\BAICUOIKY\Models\obj\Debug\Models.csprojAssemblyReference.cache
+E:\Project\CSharp\THUCHANH\BAICUOIKY\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
+E:\Project\CSharp\THUCHANH\BAICUOIKY\Models\obj\Debug\Models.csproj.CopyComplete
+E:\Project\CSharp\THUCHANH\BAICUOIKY\Models\obj\Debug\Models.dll
+E:\Project\CSharp\THUCHANH\BAICUOIKY\Models\obj\Debug\Models.pdb
+E:\Project\CSharp\THUCHANH\BAICUOIKY\Models\bin\Debug\PagedList.dll
+E:\Project\CSharp\THUCHANH\BAICUOIKY\Models\bin\Debug\PagedList.Mvc.dll
+E:\Project\CSharp\THUCHANH\BAICUOIKY\Models\bin\Debug\PagedList.xml
+E:\Project\CSharp\THUCHANH\BAICUOIKY\Models\bin\Debug\PagedList.Mvc.xml
