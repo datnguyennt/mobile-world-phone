@@ -130,5 +130,13 @@ namespace MobilePhoneWord.Areas.Admin.Controllers
 				return View();
 			}
 		}
+
+		[HttpPost]
+		public ActionResult Delete(int id)
+		{
+			SupplyDAO dao = new SupplyDAO();
+			dao.Delete(id);
+			return RedirectToAction("Index");
+		}
 	}
 }

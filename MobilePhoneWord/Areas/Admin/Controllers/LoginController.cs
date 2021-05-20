@@ -15,11 +15,11 @@ namespace MobilePhoneWord.Areas.Admin.Controllers
 		// GET: Admin/Login
 		public ActionResult Index()
 		{
-			var session = Session[Constants.USER_SEESION]; //Tạo biến session kiểm tra xem có tồn tại hay không
-			if (session != null)
-			{
-				return RedirectToAction("Index", "Home"); //Trả về trang chủ index nếu đã tồn tại session (đã đăng nhập thành công rồi nhưng lại trỏ url về lại trang login ấy)
-			}
+			//var session = Session[Constants.USER_SEESION]; //Tạo biến session kiểm tra xem có tồn tại hay không
+			//if (session != null)
+			//{
+			//	return RedirectToAction("Index", "Home"); //Trả về trang chủ index nếu đã tồn tại session (đã đăng nhập thành công rồi nhưng lại trỏ url về lại trang login ấy)
+			//}
 			return View();
 		}
 

@@ -30,7 +30,8 @@ namespace Models.EF
 
         public bool Activated { get; set; }
 
-        [Column(TypeName = "date")]
+        [Display(Name ="Ngày sinh")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? DOB { get; set; }
     }
 }

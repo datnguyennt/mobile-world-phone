@@ -7,45 +7,43 @@ using System.Threading.Tasks;
 
 namespace Models.DAO
 {
-	public class SupplyDAO
+	public class CustomerDAO
 	{
 		PhoneDbContext db = null;
 
-		public SupplyDAO()
+		public CustomerDAO()
 		{
 			db = new PhoneDbContext();
 		}
-		public List<Suppliers> ListAll()
+		public List<Customers> ListAll()
 		{
-			
-			return (from l in db.Suppliers
+
+			return (from l in db.Customers
 					select l).OrderBy(x => x.Id).ToList();
 		}
 
-
-
-		public int Insert(Suppliers supply)
+		public int Insert(Customers customer)
 		{
-			db.Suppliers.Add(supply);
+			db.Customers.Add(customer);
 			db.SaveChanges();
-			return supply.Id;
+			return customer.Id;
 		}
 
 		public bool Delete(int id)
 		{
 			try
 			{
-				var supp = db.Suppliers.Find(id);
-				db.Suppliers.Remove(supp);
+				var cus = db.Customers.Find(id);
+				db.Customers.Remove(cus);
 				db.SaveChanges();
 				return true;
 			}
 			catch (Exception)
 			{
-
 				return false;
 			}
-			
+
 		}
+
 	}
 }

@@ -1,17 +1,18 @@
-﻿@model IPagedList<Models.EF.Suppliers>
+﻿@model IPagedList<Models.EF.Customers>
 @using PagedList;
 @using PagedList.Mvc;
 
 @{
-	ViewBag.Title = "Index";
+	ViewBag.Title = "Khách hàng";
 	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+
 
 <div class="col-lg-6">
 	<div class="card">
 		<div class="card-body card-block">
 
-			@using (Html.BeginForm("Index", "Supply", FormMethod.Get, new { @class = "form-horizontal" }))
+			@using (Html.BeginForm("Index", "Customer", FormMethod.Get, new { @class = "form-horizontal" }))
 			{
 				<div class="row form-group">
 					<div class="col col-md-9">
@@ -27,7 +28,7 @@
 </div>
 <br />
 <div class="col-md-4">
-	<a class="btn btn-primary" href="@Url.Action("Create","Supply")">Thêm mới</a>
+	<a class="btn btn-primary" href="@Url.Action("Create","Customer")">Thêm mới</a>
 </div>
 <div class="content mt-3">
 	<div class="row">
@@ -42,11 +43,11 @@
 							<table class="table table-striped table-bordered table-hover">
 								<thead>
 									<tr>
-										<th>Mã hãng</th>
-										<th>Tên hãng</th>
-										<th>Logo đại diện</th>
+										<th>Họ tên</th>
+										<th>Ngày sinh</th>
+										<th>Ảnh</th>
 										<th>Địa chỉ Email</th>
-										<th>Số điện thoại</th>
+										<th>Trạng thái</th>
 										<th>#</th>
 									</tr>
 								</thead>
@@ -55,17 +56,18 @@
 									@foreach (var item in Model)
 									{
 										<tr id="row_@item.Id">
-											<td>@item.SupplyCode</td>
-											<td>@item.Name</td>
+											<td>@item.Fullname</td>
+											<td>@Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.DOB))</td>
 											<td>
-												<img src="~/Assets/Admin/img/@item.Logo" height="30" width="30" alt="" />
+												<img src="~/Assets/Admin/img/@item.Photo" height="30" width="30" alt="" />
 											</td>
 											<td>@item.Email</td>
-											<td>@item.Phone</td>
+											<td>@item.Activated</td>
 											<td>
 												@Html.ActionLink("Sửa", "Edit", new { id = item.Id }) |
 												@Html.ActionLink("Chi tiết", "Details", new { id = item.Id }) |
-												@Ajax.ActionLink("Xóa","Delete", new {@id = item.Id }, new AjaxOptions {
+												@Ajax.ActionLink("Xóa", "Delete", new { @id = item.Id }, new AjaxOptions
+												{
 											   Confirm = "Xóa hãng này ?",
 											   OnComplete = "$(#row_" + @item.Id + ").remove()",
 											   HttpMethod = "Delete"
@@ -97,3 +99,4 @@
 		</div>
 	</div>
 </div>
+
