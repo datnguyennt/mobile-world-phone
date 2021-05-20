@@ -18,20 +18,20 @@ namespace Models.DAO
         //Đăng nhập
         public int Login(String UserName, String UserPassword)
         {
-            var result = db.Customers.SingleOrDefault(x => x.Username == UserName);
+            var result = db.User.SingleOrDefault(x => x.Username == UserName);
             if (result == null) //Nếu không tồn tại username thì return 0
             {
                 return 0;
             }
             else
             {
-                if (result.Activated == false) //Trả về -1 nếu status của tài khoản đang ở trạng thái false
+                if (result.Status == false) //Trả về -1 nếu status của tài khoản đang ở trạng thái false
                 {
                     return -1;
                 }
                 else
                 {
-                    if (result.UserPassword == UserPassword)
+                    if (result.Password == UserPassword)
                     {
                         return 1; //Trả về 1 nếu tên đăng nhập và mật khẩu đều đúng
                     }
@@ -42,9 +42,9 @@ namespace Models.DAO
                 }
             }
         }
-        public Customers getUserByID(string user)
+        public User getUserByID(string user)
         {
-            return db.Customers.SingleOrDefault(x => x.Username.Contains(user));
+            return db.User.SingleOrDefault(x => x.Username.Contains(user));
         }
     }
 }

@@ -11,77 +11,91 @@
 
 	<title>@ViewBag.Title</title>
 
-	<!-- Custom fonts for this template-->
-	<link href="~/Assets/Admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-		  rel="stylesheet">
+	<!-- ========== COMMON STYLES ========== -->
+	<link rel="stylesheet" href="~/Assets/Admin/css/bootstrap.min.css" media="screen">
+	<link rel="stylesheet" href="~/Assets/Admin/css/font-awesome.min.css" media="screen">
+	<link rel="stylesheet" href="~/Assets/Admin/css/animate-css/animate.min.css" media="screen">
+	<link rel="stylesheet" href="~/Assets/Admin/css/lobipanel/lobipanel.min.css" media="screen">
 
-	<!-- Custom styles for this template-->
-	<link href="~/Assets/Admin/css/sb-admin-2.min.css" rel="stylesheet">
+	<!-- ========== PAGE STYLES ========== -->
+	<link rel="stylesheet" href="~/Assets/Admin/css/toastr/toastr.min.css" media="screen">
+	<link rel="stylesheet" href="~/Assets/Admin/css/icheck/skins/line/blue.css">
+	<link rel="stylesheet" href="~/Assets/Admin/css/icheck/skins/line/red.css">
+	<link rel="stylesheet" href="~/Assets/Admin/css/icheck/skins/line/green.css">
+	<link rel="stylesheet" href="~/Assets/Admin/css/bootstrap-tour/bootstrap-tour.css">
+
+	<!-- ========== THEME CSS ========== -->
+	<link rel="stylesheet" href="~/Assets/Admin/css/main.css" media="screen">
+
+	<!-- ========== MODERNIZR ========== -->
+	<script src="~/Assets/Admin/js/modernizr/modernizr.min.js"></script>
 
 </head>
+<body class="top-navbar-fixed">
+	<div class="main-wrapper">
 
-<body id="page-top">
+		<!-- ========== TOP NAVBAR ========== -->
+		@Html.Partial("_Topbar")
+		<!-- ========== WRAPPER FOR BOTH SIDEBARS & MAIN CONTENT ========== -->
+		<div class="content-wrapper">
+			<div class="content-container">
 
-	<!-- Page Wrapper -->
-	<div id="wrapper">
+				<!-- ========== LEFT SIDEBAR ========== -->
+				@Html.Partial("_Sidebar")
+				<!-- /.left-sidebar -->
 
-		<!-- Sidebar -->
-		@Html.Partial("_Sidebar")
-		<!-- End of Sidebar -->
-		<!-- Content Wrapper -->
-		<div id="content-wrapper" class="d-flex flex-column">
-
-			<!-- Main Content -->
-			<div id="content">
-
-				<!-- Topbar -->
-				@Html.Partial("_Topbar")
-				<!-- End of Topbar -->
-				<!-- Begin Page Content -->
-				<div class="container-fluid">
-
-					@RenderBody()
-
+				<div class="main-page">
+					<div class="container-fluid">
+						<div class="row page-title-div">
+							<div class="col-sm-6">
+								<h2 class="title">@ViewBag.Title</h2>
+							</div>
+						</div>
+					</div>
+					<!-- /.container-fluid -->
+					<div class="container-fluid">
+						@RenderBody()
+					</div>
+					<!-- /.section -->
 				</div>
-				<!-- /.container-fluid -->
+				<!-- /.main-page -->
 
 			</div>
-			<!-- End of Main Content -->
-			<!-- Footer -->
-			<footer class="sticky-footer bg-white">
-				<div class="container my-auto">
-					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Nguyễn Thành Đạt</span>
-					</div>
-				</div>
-			</footer>
-			<!-- End of Footer -->
-
+			<!-- /.content-container -->
 		</div>
-		<!-- End of Content Wrapper -->
+		<!-- /.content-wrapper -->
 
 	</div>
-	<!-- End of Page Wrapper -->
+	<!-- /.main-wrapper -->
+	<!-- ========== COMMON JS FILES ========== -->
+	<script src="~/Assets/Admin/js/jquery/jquery-2.2.4.min.js"></script>
+	<script src="~/Assets/Admin/js/jquery-ui/jquery-ui.min.js"></script>
+	<script src="~/Assets/Admin/js/bootstrap/bootstrap.min.js"></script>
+	<script src="~/Assets/Admin/js/pace/pace.min.js"></script>
+	<script src="~/Assets/Admin/js/lobipanel/lobipanel.min.js"></script>
+	<script src="~/Assets/Admin/js/iscroll/iscroll.js"></script>
 
-	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded" href="#page-top">
-		<i class="fas fa-angle-up"></i>
-	</a>
+	<!-- ========== PAGE JS FILES ========== -->
+	<script src="~/Assets/Admin/js/prism/prism.js"></script>
+	<script src="~/Assets/Admin/js/waypoint/waypoints.min.js"></script>
+	<script src="~/Assets/Admin/js/counterUp/jquery.counterup.min.js"></script>
+	<script src="~/Assets/Admin/js/amcharts/amcharts.js"></script>
+	<script src="~/Assets/Admin/js/amcharts/serial.js"></script>
+	<script src="~/Assets/Admin/js/amcharts/plugins/export/export.min.js"></script>
+	<script src="~/Assets/Admin/js/amcharts/themes/light.js"></script>
 
-	<!-- Logout Modal-->
-	@Html.Partial("_Logout")
-	<!-- Bootstrap core JavaScript-->
-	<script src="~/Assets/Admin/vendor/jquery/jquery.min.js"></script>
-	<script src="~/Assets/Admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-
-	<!-- Core plugin JavaScript-->
-	<script src="~/Assets/Admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-	<!-- Custom scripts for all pages-->
-	<script src="~/Assets/Admin/js/sb-admin-2.min.js"></script>
-
+	<!-- ========== THEME JS ========== -->
+	<script src="~/Assets/Admin/js/main.js"></script>
+	<script src="~/Assets/Admin/js/production-chart.js"></script>
+	<script src="~/Assets/Admin/js/traffic-chart.js"></script>
+	<script src="~/Assets/Admin/js/task-list.js"></script>
+	<!-- ========== ADD custom.js FILE BELOW WITH YOUR CHANGES ========== -->
+	<!-- ========== PAGE JS FILES ========== -->
+	<script src="~/Assets/Admin/js/prism/prism.js"></script>
+	<script src="~/Assets/Admin/js/iziModal/iziModal.min.js"></script>
+	<script src="~/Assets/Admin/js/sweet-alert/sweetalert.min.js"></script>
+	<!-- ========== THEME JS ========== -->
+	<script src="~/Assets/Admin/js/main.js"></script>
 </body>
-
+@RenderSection("jsfooter", required: false)
 </html>

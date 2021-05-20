@@ -59,16 +59,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\CategoryDAO.cs" />
     <Compile Include="DAO\CustomerDAO.cs" />
     <Compile Include="DAO\SupplyDAO.cs" />
     <Compile Include="DAO\UserDAO.cs" />
-    <Compile Include="EF\Categories.cs" />
-    <Compile Include="EF\Customers.cs" />
-    <Compile Include="EF\OrderDetails.cs" />
-    <Compile Include="EF\Orders.cs" />
+    <Compile Include="EF\About.cs" />
+    <Compile Include="EF\Contact.cs" />
+    <Compile Include="EF\Feedback.cs" />
+    <Compile Include="EF\Footer.cs" />
+    <Compile Include="EF\Menu.cs" />
+    <Compile Include="EF\MenuType.cs" />
+    <Compile Include="EF\New.cs" />
+    <Compile Include="EF\NewCategory.cs" />
     <Compile Include="EF\PhoneDbContext.cs" />
+    <Compile Include="EF\ProductCategory.cs" />
     <Compile Include="EF\Products.cs" />
-    <Compile Include="EF\Suppliers.cs" />
+    <Compile Include="EF\Slider.cs" />
+    <Compile Include="EF\sysdiagrams.cs" />
+    <Compile Include="EF\SystemConfig.cs" />
+    <Compile Include="EF\Tag.cs" />
+    <Compile Include="EF\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

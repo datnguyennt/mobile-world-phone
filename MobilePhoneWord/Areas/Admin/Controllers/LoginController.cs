@@ -42,11 +42,13 @@ namespace MobilePhoneWord.Areas.Admin.Controllers
 					var userSession = new UserLogin
 					{
 						UserName = user.Username,
-						UserID = user.Id,
-						FirstName = user.Fullname
+						UserID = user.UserID,
+						FirstName = user.FirstName,
+						LastName = user.LastName
 					};
+					string fullName = user.LastName + " " + user.FirstName;
 					Session.Add(Constants.USER_SEESION, userSession); //Session này để kiểm tra khi vào trang chủ index home
-					Session["FullName"] = user.Fullname.ToString(); //Session này dùng cho lời chào ở trang index home
+					Session["FullName"] = fullName.ToString(); //Session này dùng cho lời chào ở trang index home
 					return RedirectToAction("Index", "Home"); //Sau đó quay về trang index home
 				}
 				else if (result == 0) //Nếu tài khoản không tồn tại

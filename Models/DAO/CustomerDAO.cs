@@ -15,26 +15,26 @@ namespace Models.DAO
 		{
 			db = new PhoneDbContext();
 		}
-		public List<Customers> ListAll()
+		public List<User> ListAll()
 		{
 
-			return (from l in db.Customers
-					select l).OrderBy(x => x.Id).ToList();
+			return (from l in db.User
+					select l).OrderBy(x => x.UserID).ToList();
 		}
 
-		public int Insert(Customers customer)
+		public int Insert(User customer)
 		{
-			db.Customers.Add(customer);
+			db.User.Add(customer);
 			db.SaveChanges();
-			return customer.Id;
+			return customer.UserID;
 		}
 
 		public bool Delete(int id)
 		{
 			try
 			{
-				var cus = db.Customers.Find(id);
-				db.Customers.Remove(cus);
+				var cus = db.User.Find(id);
+				db.User.Remove(cus);
 				db.SaveChanges();
 				return true;
 			}
@@ -43,6 +43,14 @@ namespace Models.DAO
 				return false;
 			}
 
+		}
+
+		public bool ChangeStatus(int id)
+		{
+			var cus = db.User.Find(id);
+			cus.Status = !cus.Status;
+			db.SaveChanges();
+			return cus.Status;
 		}
 
 	}

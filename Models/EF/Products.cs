@@ -8,54 +8,65 @@ namespace Models.EF
 
     public partial class Products
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Products()
-        {
-            OrderDetails = new HashSet<OrderDetails>();
-        }
+        [Key]
+        public int ProductID { get; set; }
 
-        public int Id { get; set; }
+        [StringLength(10)]
+        public string ProductCode { get; set; }
 
-        [Required]
-        [StringLength(40)]
-        public string Name { get; set; }
+        [StringLength(250)]
+        public string ProductName { get; set; }
 
-        [Required]
-        [StringLength(50)]
-        public string UnitBrief { get; set; }
+        [StringLength(250)]
+        public string MetaTitle { get; set; }
 
-        public double UnitPrice { get; set; }
-
-        [Required]
-        [StringLength(50)]
-        public string Image { get; set; }
-
-        public DateTime ProductDate { get; set; }
-
-        public bool Available { get; set; }
-
-        [StringLength(2000)]
+        [StringLength(500)]
         public string Description { get; set; }
 
-        public int CategoryId { get; set; }
+        [StringLength(250)]
+        public string ProductImage { get; set; }
 
-        public int SupplierId { get; set; }
+        [Column(TypeName = "xml")]
+        public string MoreImages { get; set; }
 
-        public int Quantity { get; set; }
+        public decimal? Price { get; set; }
 
-        public double Discount { get; set; }
+        public decimal? PromotionPrice { get; set; }
 
-        public bool Special { get; set; }
+        public bool? IncludeVAT { get; set; }
 
-        public bool Latest { get; set; }
+        public int? Quantity { get; set; }
 
-        public int Views { get; set; }
+        public int? CategoryID { get; set; }
 
-        public virtual Categories Categories { get; set; }
+        [Column(TypeName = "ntext")]
+        public string Detail { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
+        public int? Warranty { get; set; }
 
-        public virtual Suppliers Suppliers { get; set; }
+        public DateTime? CreatedDate { get; set; }
+
+        [StringLength(50)]
+        public string CreatedBy { get; set; }
+
+        public DateTime? ModifiedDate { get; set; }
+
+        [StringLength(50)]
+        public string ModifiedBy { get; set; }
+
+        [StringLength(250)]
+        public string MetaKeywords { get; set; }
+
+        [StringLength(250)]
+        public string MetaDescriptions { get; set; }
+
+        public bool? Status { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? TopHot { get; set; }
+
+        public int? ViewCounts { get; set; }
+
+        public virtual ProductCategory ProductCategory { get; set; }
     }
 }
