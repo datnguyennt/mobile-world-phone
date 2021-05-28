@@ -29,7 +29,7 @@ namespace MobilePhoneWord.Areas.Admin.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var dao = new UserDAO(); //Khởi tạo constructor User
+				var dao = new EmployeeDAO(); //Khởi tạo constructor User
 
 				string pass_MD5 = Encryptor.MD5Hash(model.UserPassword); //Mã hóa mật khẩu về MD5 trước khi truyền vào
 
@@ -41,12 +41,11 @@ namespace MobilePhoneWord.Areas.Admin.Controllers
 
 					var userSession = new UserLogin
 					{
-						UserName = user.Username,
-						UserID = user.UserID,
-						FirstName = user.FirstName,
-						LastName = user.LastName
+						UserName = user.UserName,
+						UserID = user.NVID,
+						FullName = user.FullName,
 					};
-					string fullName = user.LastName + " " + user.FirstName;
+					string fullName = user.FullName;
 					Session.Add(Constants.USER_SEESION, userSession); //Session này để kiểm tra khi vào trang chủ index home
 					Session["FullName"] = fullName.ToString(); //Session này dùng cho lời chào ở trang index home
 					return RedirectToAction("Index", "Home"); //Sau đó quay về trang index home

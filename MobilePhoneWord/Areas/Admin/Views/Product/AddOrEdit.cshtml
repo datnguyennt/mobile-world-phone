@@ -1,0 +1,60 @@
+﻿
+@{
+	ViewBag.Title = "AddOrEdit";
+	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+
+	<div class="panel-body">
+		<form id="formdata" class="form-horizontal" method="post" enctype="multipart/form-data">
+			<input hidden id="id_Product" value="" type="hidden" />
+			<div class="form-group">
+				<label>Mã sản phẩm</label>
+				<input type="text" class="form-control" id="productcode" placeholder="Nhập vào mã sản phẩm" autofocus="">
+			</div>
+
+			<div class="form-group">
+				<label>Tên sản phẩm</label>
+				<input type="text" class="form-control" id="productname" placeholder="Nhập vào tên sản phẩm" autofocus="">
+			</div>
+			<div class="form-group">
+				<label>Meta title</label>
+				<input type="text" class="form-control" id="metatitle" placeholder="Nhập vào tên sản phẩm" autofocus="">
+			</div>
+			<div class="form-group">
+				<label>Hãng</label>
+				<select class="form-control" id="category">
+					<option>Default Select</option>
+					<option>1</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label>Đơn giá</label>
+				<input type="text" class="form-control" id="price" placeholder="Nhập vào giá tiền" autofocus="">
+			</div>
+			<div class="form-group">
+				<label>Số lượng</label>
+				<input type="text" class="form-control" id="quantity" placeholder="Nhập vào số lượng" autofocus="">
+			</div>
+			<div class="form-group">
+				<label>Ảnh sản phẩm</label>
+				<input id="UploadImage" type="file" name="UploadImage" class="form-control-file" />
+			</div>
+			<div class="form-group" hidden>
+				<label>Lượt xem</label>
+				<input type="text" class="form-control" id="viewcount" placeholder="" autofocus="">
+			</div>
+			<div class="form-group">
+				<label>Trạng thái</label>
+				<select class="form-control" id="status">
+					<option value="True">Còn hàng</option>
+					<option value="False">Hết hàng</option>
+				</select>
+			</div>
+		</form>
+	</div>
+	<!-- /.col-md-12 -->
+</div>
+
+

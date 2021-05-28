@@ -12,7 +12,6 @@ namespace MobilePhoneWord.Areas.Admin.Controllers
 	public class CategoryController : Controller
 	{
 		PhoneDbContext db = new PhoneDbContext();
-		public int pageSize = 2;
 		// GET: Admin/Category
 		public ActionResult Index()
 		{

@@ -12,7 +12,7 @@ namespace MobilePhoneWord.Areas.Admin.Controllers
 	{
 		protected override void OnActionExecuted(ActionExecutedContext filterContext)
 		{
-			var session = (UserLogin)Session[Constants.USER_SEESION];
+			var session = (UserLogin)Session[Constants.USER_SEESION]; //Lấy session từ trang login
 			if (session == null)
 			{
 				filterContext.Result = new RedirectToRouteResult(new

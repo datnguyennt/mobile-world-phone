@@ -21,31 +21,29 @@ namespace MobilePhoneWord.Areas.Admin.Controllers
 		// GET: Admin/Customer
 		public ActionResult Index()
 		{
-			return View(db.User.ToList());
+			return View(db.NhanVien.ToList());
 		}
 
 		[HttpGet]
-		public JsonResult LoadCustomer()
+		public JsonResult LoadEmployee()
 		{
 			try
 			{
-				var lstUser = (from u in db.User
-							   select new UserViewModel
+				var lstEmployyee = (from u in db.NhanVien
+							   select new NhanVienViewModel
 							   {
-								   UserID = u.UserID,
-								   Username = u.Username,
-								   LastName = u.LastName,
-								   FirstName = u.FirstName,
-								   FullName = u.LastName + " " + u.FirstName,
-								   Address = u.Address,
+								  NVID = u.NVID,
+								   UserName = u.UserName,
+								   FullName = u.FullName,
+								   NVAddress = u.NVAddress,
 								   Email = u.Email,
-								   Phone = u.Phone,
-								   CreatedFor = u.CreatedFor,
-								   Status = u.Status,
-								   Password = u.Password
+								   PhoneNum = u.PhoneNum,
+								   Quyen = u.Quyen,
+								   Active = u.Active,
+								   NVPassword = u.NVPassword
 							   }).ToList();
 
-				return Json(new {code = 200, lstUser = lstUser, msg = "Thành công"}, JsonRequestBehavior.AllowGet);
+				return Json(new {code = 200, lstUser = lstEmployyee, msg = "Thành công"}, JsonRequestBehavior.AllowGet);
 			}
 			catch (Exception ex)
 			{
@@ -59,33 +57,33 @@ namespace MobilePhoneWord.Areas.Admin.Controllers
 			return RedirectToAction("Index", "Login");
 		}
 
-		[HttpPost]
-		public JsonResult ChangeStatus(int id)
-		{
-			var result = new CustomerDAO().ChangeStatus(id);
+		//[HttpPost]
+		//public JsonResult ChangeStatus(int id)
+		//{
+		//	var result = new CustomerDAO().ChangeStatus(id);
 
-			return Json(new
-			{
-				status = result
-			});
-		}
+		//	return Json(new
+		//	{
+		//		status = result
+		//	});
+		//}
 
 		[HttpPost]
-		public JsonResult AddUser(string Username, string LastName, string FirstName, string Phone, string Email, string Address, string Password)
+		public JsonResult AddEmployee(NhanVienViewModel model)
 		{
-			string pass_MD5 = Encryptor.MD5Hash(Password); //Mã hóa mật khẩu về MD5 trước khi truyền vào
+			string pass_MD5 = Encryptor.MD5Hash(model.NVPassword); //Mã hóa mật khẩu về MD5 trước khi truyền vào
 			try
 			{
-				User user = new User();
-				user.Username = Username;
-				user.LastName = LastName;
-				user.FirstName = FirstName;
-				user.Phone = Phone;
-				user.Email = Email;
-				user.Address = Address;
-				user.Password = pass_MD5;
+				NhanVien user = new NhanVien();
+				user.UserName = model.UserName;
+				user.FullName = model.UserName;
+				user.PhoneNum = model.PhoneNum;
+				user.Email = model.Email;
+				user.NVAddress = model.NVAddress;
+				user.Quyen = model.Quyen;
+				user.NVPassword = pass_MD5;
 
-				db.User.Add(user);
+				db.NhanVien.Add(user);
 				db.SaveChanges(); //Luu vao csdl
 				return Json(new { code = 200, msg = "Add success" }, JsonRequestBehavior.AllowGet);
 			}
@@ -96,11 +94,11 @@ namespace MobilePhoneWord.Areas.Admin.Controllers
 		}
 
 		[HttpGet]
-		public JsonResult DetailUser(int idUser)
+		public JsonResult DetailEmployee(int idUser)
 		{
 			try
 			{
-				var user = db.User.SingleOrDefault(x => x.UserID == idUser);
+				var user = db.NhanVien.SingleOrDefault(x => x.NVID == idUser);
 				return Json(new { code = 200, User = user, msg="Success"}, JsonRequestBehavior.AllowGet);
 			}
 			catch (Exception)
@@ -110,22 +108,22 @@ namespace MobilePhoneWord.Areas.Admin.Controllers
 		}
 
 		[HttpPost]
-		public JsonResult UpdateUser(int idUser, string Username, string LastName, string FirstName, string Phone, string Email, string Address, string Password)
+		public JsonResult UpdateEmployee(NhanVienViewModel model)
 		{
-			//string pass_MD5 = Encryptor.MD5Hash(Password); //Mã hóa mật khẩu về MD5 trước khi truyền vào
+			string pass_MD5 = Encryptor.MD5Hash(model.NVPassword); //Mã hóa mật khẩu về MD5 trước khi truyền vào
 			try
 			{
 				//Tìm user
-				var user = db.User.SingleOrDefault(x => x.UserID == idUser);
+				var user = db.NhanVien.SingleOrDefault(x => x.NVID == model.NVID);
 
 				//Gán giá trị mới cho user
-				user.Username = Username;
-				user.LastName = LastName;
-				user.FirstName = FirstName;
-				user.Phone = Phone;
-				user.Email = Email;
-				user.Address = Address;
-				user.Password = Password;
+				user.UserName = model.UserName;
+				user.FullName = model.UserName;
+				user.PhoneNum = model.PhoneNum;
+				user.Email = model.Email;
+				user.NVAddress = model.NVAddress;
+				user.Quyen = model.Quyen;
+				user.NVPassword = pass_MD5;
 
 				db.SaveChanges(); //Luu vao csdl
 				return Json(new { code = 200, msg = "Update success" }, JsonRequestBehavior.AllowGet);

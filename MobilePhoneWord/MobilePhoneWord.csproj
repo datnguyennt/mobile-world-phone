@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -25,6 +26,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>4.1</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -134,15 +136,20 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CashController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FeedbackController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
-    <Compile Include="Areas\Admin\Controllers\SupplyController.cs" />
     <Compile Include="Areas\Admin\Models\CategoryViewModel.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
-    <Compile Include="Areas\Admin\Models\UserViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\NhanVienViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\ProductViewModel.cs" />
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\Encryptor.cs" />
     <Compile Include="Common\UserLogin.cs" />
@@ -402,8 +409,12 @@
     <Content Include="Assets\Admin\images\letter\z.png" />
     <Content Include="Assets\Admin\images\logo-dark.svg" />
     <Content Include="Assets\Admin\images\logo-light.svg" />
+    <Content Include="Assets\Admin\images\logo.PNG" />
     <Content Include="Assets\Admin\images\photo-1.jpg" />
     <Content Include="Assets\Admin\images\photo-2.jpg" />
+    <Content Include="Assets\Admin\images\product\default.jpg" />
+    <Content Include="Assets\Admin\images\product\imagg.JPG" />
+    <Content Include="Assets\Admin\images\product\iphone-xs-max-64gb.jpg" />
     <Content Include="Assets\Admin\images\sample.jpg" />
     <Content Include="Assets\Admin\images\thumbs-up-icon.png" />
     <Content Include="Assets\Admin\js\amcharts\amcharts.js" />
@@ -696,6 +707,16 @@
     <Content Include="Assets\Admin\js\bootstrap-tour\bootstrap-tour.js" />
     <Content Include="Assets\Admin\js\bootstrap\bootstrap.js" />
     <Content Include="Assets\Admin\js\bootstrap\bootstrap.min.js" />
+    <Content Include="Assets\Admin\js\chartjs\bar.js" />
+    <Content Include="Assets\Admin\js\chartjs\chart1.js" />
+    <Content Include="Assets\Admin\js\chartjs\combo-bar-line.js" />
+    <Content Include="Assets\Admin\js\chartjs\dataPoints-customTooltips.js" />
+    <Content Include="Assets\Admin\js\chartjs\data_labelling.js" />
+    <Content Include="Assets\Admin\js\chartjs\globalchartjs.js" />
+    <Content Include="Assets\Admin\js\chartjs\line.js" />
+    <Content Include="Assets\Admin\js\chartjs\pie.js" />
+    <Content Include="Assets\Admin\js\chartjs\radar.js" />
+    <Content Include="Assets\Admin\js\chartjs\utils.js" />
     <Content Include="Assets\Admin\js\ckeditor\adapters\jquery.js" />
     <Content Include="Assets\Admin\js\ckeditor\build-config.js" />
     <Content Include="Assets\Admin\js\ckeditor\ckeditor.js" />
@@ -1086,6 +1107,136 @@
     <Content Include="Assets\Admin\js\ckeditor\styles.js" />
     <Content Include="Assets\Admin\js\counterUp\jquery.counterup.js" />
     <Content Include="Assets\Admin\js\counterUp\jquery.counterup.min.js" />
+    <Content Include="Assets\Admin\js\DataTables\Bootstrap-3.3.7\css\bootstrap-theme.css" />
+    <Content Include="Assets\Admin\js\DataTables\Bootstrap-3.3.7\css\bootstrap-theme.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\Bootstrap-3.3.7\css\bootstrap.css" />
+    <Content Include="Assets\Admin\js\DataTables\Bootstrap-3.3.7\css\bootstrap.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\Bootstrap-3.3.7\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Assets\Admin\js\DataTables\Bootstrap-3.3.7\js\bootstrap.js" />
+    <Content Include="Assets\Admin\js\DataTables\Bootstrap-3.3.7\js\bootstrap.min.js" />
+    <Content Include="Assets\Admin\js\DataTables\Bootstrap-3.3.7\js\npm.js" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\css\buttons.bootstrap.css" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\css\buttons.bootstrap.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\css\buttons.dataTables.css" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\css\buttons.dataTables.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\css\buttons.foundation.css" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\css\buttons.foundation.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\css\buttons.jqueryui.css" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\css\buttons.jqueryui.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\css\buttons.semanticui.css" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\css\buttons.semanticui.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\js\buttons.bootstrap.js" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\js\buttons.bootstrap.min.js" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\js\buttons.colVis.js" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\js\buttons.colVis.min.js" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\js\buttons.flash.js" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\js\buttons.flash.min.js" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\js\buttons.foundation.js" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\js\buttons.foundation.min.js" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\js\buttons.html5.js" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\js\buttons.html5.min.js" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\js\buttons.jqueryui.js" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\js\buttons.jqueryui.min.js" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\js\buttons.print.js" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\js\buttons.print.min.js" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\js\buttons.semanticui.js" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\js\buttons.semanticui.min.js" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\js\dataTables.buttons.js" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\js\dataTables.buttons.min.js" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\swf\flashExport.swf" />
+    <Content Include="Assets\Admin\js\DataTables\ColReorder-1.3.2\css\colReorder.bootstrap.css" />
+    <Content Include="Assets\Admin\js\DataTables\ColReorder-1.3.2\css\colReorder.bootstrap.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\ColReorder-1.3.2\css\colReorder.dataTables.css" />
+    <Content Include="Assets\Admin\js\DataTables\ColReorder-1.3.2\css\colReorder.dataTables.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\ColReorder-1.3.2\css\colReorder.foundation.css" />
+    <Content Include="Assets\Admin\js\DataTables\ColReorder-1.3.2\css\colReorder.foundation.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\ColReorder-1.3.2\css\colReorder.jqueryui.css" />
+    <Content Include="Assets\Admin\js\DataTables\ColReorder-1.3.2\css\colReorder.jqueryui.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\ColReorder-1.3.2\js\dataTables.colReorder.js" />
+    <Content Include="Assets\Admin\js\DataTables\ColReorder-1.3.2\js\dataTables.colReorder.min.js" />
+    <Content Include="Assets\Admin\js\DataTables\DataTables-1.10.13\css\dataTables.bootstrap.css" />
+    <Content Include="Assets\Admin\js\DataTables\DataTables-1.10.13\css\dataTables.bootstrap.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\DataTables-1.10.13\css\dataTables.foundation.css" />
+    <Content Include="Assets\Admin\js\DataTables\DataTables-1.10.13\css\dataTables.foundation.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\DataTables-1.10.13\css\dataTables.jqueryui.css" />
+    <Content Include="Assets\Admin\js\DataTables\DataTables-1.10.13\css\dataTables.jqueryui.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\DataTables-1.10.13\css\dataTables.semanticui.css" />
+    <Content Include="Assets\Admin\js\DataTables\DataTables-1.10.13\css\dataTables.semanticui.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\DataTables-1.10.13\css\jquery.dataTables.css" />
+    <Content Include="Assets\Admin\js\DataTables\DataTables-1.10.13\css\jquery.dataTables.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\DataTables-1.10.13\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Assets\Admin\js\DataTables\DataTables-1.10.13\images\sort_asc.png" />
+    <Content Include="Assets\Admin\js\DataTables\DataTables-1.10.13\images\sort_asc_disabled.png" />
+    <Content Include="Assets\Admin\js\DataTables\DataTables-1.10.13\images\sort_both.png" />
+    <Content Include="Assets\Admin\js\DataTables\DataTables-1.10.13\images\sort_desc.png" />
+    <Content Include="Assets\Admin\js\DataTables\DataTables-1.10.13\images\sort_desc_disabled.png" />
+    <Content Include="Assets\Admin\js\DataTables\DataTables-1.10.13\js\dataTables.bootstrap.js" />
+    <Content Include="Assets\Admin\js\DataTables\DataTables-1.10.13\js\dataTables.bootstrap.min.js" />
+    <Content Include="Assets\Admin\js\DataTables\DataTables-1.10.13\js\dataTables.foundation.js" />
+    <Content Include="Assets\Admin\js\DataTables\DataTables-1.10.13\js\dataTables.foundation.min.js" />
+    <Content Include="Assets\Admin\js\DataTables\DataTables-1.10.13\js\dataTables.jqueryui.js" />
+    <Content Include="Assets\Admin\js\DataTables\DataTables-1.10.13\js\dataTables.jqueryui.min.js" />
+    <Content Include="Assets\Admin\js\DataTables\DataTables-1.10.13\js\dataTables.semanticui.js" />
+    <Content Include="Assets\Admin\js\DataTables\DataTables-1.10.13\js\dataTables.semanticui.min.js" />
+    <Content Include="Assets\Admin\js\DataTables\DataTables-1.10.13\js\jquery.dataTables.js" />
+    <Content Include="Assets\Admin\js\DataTables\DataTables-1.10.13\js\jquery.dataTables.min.js" />
+    <Content Include="Assets\Admin\js\DataTables\datatables.css" />
+    <Content Include="Assets\Admin\js\DataTables\datatables.js" />
+    <Content Include="Assets\Admin\js\DataTables\datatables.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\datatables.min.js" />
+    <Content Include="Assets\Admin\js\DataTables\FixedColumns-3.2.2\css\fixedColumns.bootstrap.css" />
+    <Content Include="Assets\Admin\js\DataTables\FixedColumns-3.2.2\css\fixedColumns.bootstrap.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\FixedColumns-3.2.2\css\fixedColumns.dataTables.css" />
+    <Content Include="Assets\Admin\js\DataTables\FixedColumns-3.2.2\css\fixedColumns.dataTables.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\FixedColumns-3.2.2\css\fixedColumns.foundation.css" />
+    <Content Include="Assets\Admin\js\DataTables\FixedColumns-3.2.2\css\fixedColumns.foundation.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\FixedColumns-3.2.2\css\fixedColumns.jqueryui.css" />
+    <Content Include="Assets\Admin\js\DataTables\FixedColumns-3.2.2\css\fixedColumns.jqueryui.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\FixedColumns-3.2.2\js\dataTables.fixedColumns.js" />
+    <Content Include="Assets\Admin\js\DataTables\FixedColumns-3.2.2\js\dataTables.fixedColumns.min.js" />
+    <Content Include="Assets\Admin\js\DataTables\FixedHeader-3.1.2\css\fixedHeader.bootstrap.css" />
+    <Content Include="Assets\Admin\js\DataTables\FixedHeader-3.1.2\css\fixedHeader.bootstrap.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\FixedHeader-3.1.2\css\fixedHeader.dataTables.css" />
+    <Content Include="Assets\Admin\js\DataTables\FixedHeader-3.1.2\css\fixedHeader.dataTables.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\FixedHeader-3.1.2\css\fixedHeader.foundation.css" />
+    <Content Include="Assets\Admin\js\DataTables\FixedHeader-3.1.2\css\fixedHeader.foundation.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\FixedHeader-3.1.2\css\fixedHeader.jqueryui.css" />
+    <Content Include="Assets\Admin\js\DataTables\FixedHeader-3.1.2\css\fixedHeader.jqueryui.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\FixedHeader-3.1.2\js\dataTables.fixedHeader.js" />
+    <Content Include="Assets\Admin\js\DataTables\FixedHeader-3.1.2\js\dataTables.fixedHeader.min.js" />
+    <Content Include="Assets\Admin\js\DataTables\jQuery-2.2.4\jquery-2.2.4.js" />
+    <Content Include="Assets\Admin\js\DataTables\jQuery-2.2.4\jquery-2.2.4.min.js" />
+    <Content Include="Assets\Admin\js\DataTables\JSZip-2.5.0\jszip.js" />
+    <Content Include="Assets\Admin\js\DataTables\JSZip-2.5.0\jszip.min.js" />
+    <Content Include="Assets\Admin\js\DataTables\pdfmake-0.1.18\build\pdfmake.js" />
+    <Content Include="Assets\Admin\js\DataTables\pdfmake-0.1.18\build\pdfmake.min.js" />
+    <Content Include="Assets\Admin\js\DataTables\pdfmake-0.1.18\build\vfs_fonts.js" />
+    <Content Include="Assets\Admin\js\DataTables\Responsive-2.1.1\css\responsive.bootstrap.css" />
+    <Content Include="Assets\Admin\js\DataTables\Responsive-2.1.1\css\responsive.bootstrap.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\Responsive-2.1.1\css\responsive.dataTables.css" />
+    <Content Include="Assets\Admin\js\DataTables\Responsive-2.1.1\css\responsive.dataTables.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\Responsive-2.1.1\css\responsive.foundation.css" />
+    <Content Include="Assets\Admin\js\DataTables\Responsive-2.1.1\css\responsive.foundation.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\Responsive-2.1.1\css\responsive.jqueryui.css" />
+    <Content Include="Assets\Admin\js\DataTables\Responsive-2.1.1\css\responsive.jqueryui.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\Responsive-2.1.1\js\dataTables.responsive.js" />
+    <Content Include="Assets\Admin\js\DataTables\Responsive-2.1.1\js\dataTables.responsive.min.js" />
+    <Content Include="Assets\Admin\js\DataTables\Responsive-2.1.1\js\responsive.bootstrap.js" />
+    <Content Include="Assets\Admin\js\DataTables\Responsive-2.1.1\js\responsive.bootstrap.min.js" />
+    <Content Include="Assets\Admin\js\DataTables\Responsive-2.1.1\js\responsive.foundation.js" />
+    <Content Include="Assets\Admin\js\DataTables\Responsive-2.1.1\js\responsive.foundation.min.js" />
+    <Content Include="Assets\Admin\js\DataTables\Responsive-2.1.1\js\responsive.jqueryui.js" />
+    <Content Include="Assets\Admin\js\DataTables\Responsive-2.1.1\js\responsive.jqueryui.min.js" />
+    <Content Include="Assets\Admin\js\DataTables\Select-1.2.0\css\select.bootstrap.css" />
+    <Content Include="Assets\Admin\js\DataTables\Select-1.2.0\css\select.bootstrap.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\Select-1.2.0\css\select.dataTables.css" />
+    <Content Include="Assets\Admin\js\DataTables\Select-1.2.0\css\select.dataTables.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\Select-1.2.0\css\select.foundation.css" />
+    <Content Include="Assets\Admin\js\DataTables\Select-1.2.0\css\select.foundation.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\Select-1.2.0\css\select.jqueryui.css" />
+    <Content Include="Assets\Admin\js\DataTables\Select-1.2.0\css\select.jqueryui.min.css" />
+    <Content Include="Assets\Admin\js\DataTables\Select-1.2.0\js\dataTables.select.js" />
+    <Content Include="Assets\Admin\js\DataTables\Select-1.2.0\js\dataTables.select.min.js" />
     <Content Include="Assets\Admin\js\date-picker\bootstrap-datepicker.js" />
     <Content Include="Assets\Admin\js\date-picker\datepair.js" />
     <Content Include="Assets\Admin\js\date-picker\jquery.timepicker.js" />
@@ -1162,6 +1313,10 @@
     <Content Include="Assets\Admin\js\pace\pace.min.js" />
     <Content Include="Assets\Admin\js\pie-chart.js" />
     <Content Include="Assets\Admin\js\pie-chart.min.js" />
+    <Content Include="Assets\Admin\js\plugin\ordercontroller.js" />
+    <Content Include="Assets\Admin\js\plugin\employeecontroller.js" />
+    <Content Include="Assets\Admin\js\plugin\productcontroller.js" />
+    <Content Include="Assets\Admin\js\plugin\customercontroller.js" />
     <Content Include="Assets\Admin\js\plugin\categorycontroller.js" />
     <Content Include="Assets\Admin\js\plugin\usercontroller.js" />
     <Content Include="Assets\Admin\js\pnotify\pnotify.custom.min.js" />
@@ -1223,6 +1378,12 @@
     <Content Include="Areas\Admin\Views\Supply\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Notifications.cshtml" />
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Cash\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Feedback\Index.cshtml" />
     <Content Include="Assets\Admin\css\.DS_Store" />
     <Content Include="Assets\Admin\css\ckeditor\.DS_Store" />
     <Content Include="Assets\Admin\css\ckeditor\skins\.DS_Store" />
@@ -1256,60 +1417,6 @@
     <Content Include="Assets\Admin\fonts\fontawesome-webfont.woff2" />
     <Content Include="Assets\Admin\fonts\FontAwesome.otf" />
     <Content Include="Assets\Admin\images\.DS_Store" />
-    <Content Include="Assets\Admin\js\.DS_Store" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\animate\bower.json" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\animate\LICENSE" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\animate\package.json" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\animate\README.md" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\bower.json" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\examples\data\gantt.json" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\examples\data\gauge.json" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\examples\data\map.json" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\examples\data\map_areas.json" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\examples\data\MSFT.csv" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\examples\data\MSFT_events.csv" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\examples\data\pie.csv" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\examples\data\pie.json" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\examples\data\serial.csv" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\examples\data\serial.json" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\examples\data\serial2.json" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\examples\data\TXN.csv" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\package.json" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\readme.md" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\export\bower.json" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\export\libs\pdfmake\pdfmake.min.js.map" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\export\libs\xlsx\LICENSE" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\export\libs\xlsx\xlsx.min.map" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\export\LICENSE" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\export\package.json" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\export\README.md" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\responsive\bower.json" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\responsive\package.json" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\responsive\readme.md" />
-    <Content Include="Assets\Admin\js\amcharts\plugins\responsive\responsive.min.js.map" />
-    <Content Include="Assets\Admin\js\ckeditor\.DS_Store" />
-    <Content Include="Assets\Admin\js\ckeditor\CHANGES.md" />
-    <Content Include="Assets\Admin\js\ckeditor\LICENSE.md" />
-    <Content Include="Assets\Admin\js\ckeditor\plugins\scayt\CHANGELOG.md" />
-    <Content Include="Assets\Admin\js\ckeditor\plugins\scayt\LICENSE.md" />
-    <Content Include="Assets\Admin\js\ckeditor\plugins\scayt\README.md" />
-    <Content Include="Assets\Admin\js\ckeditor\plugins\wsc\LICENSE.md" />
-    <Content Include="Assets\Admin\js\ckeditor\plugins\wsc\README.md" />
-    <Content Include="Assets\Admin\js\ckeditor\README.md" />
-    <Content Include="Assets\Admin\js\ckeditor\samples\old\htmlwriter\assets\outputforflash\outputforflash.fla" />
-    <Content Include="Assets\Admin\js\ckeditor\samples\toolbarconfigurator\font\config.json" />
-    <Content Include="Assets\Admin\js\ckeditor\samples\toolbarconfigurator\font\fontello.eot" />
-    <Content Include="Assets\Admin\js\ckeditor\samples\toolbarconfigurator\font\fontello.ttf" />
-    <Content Include="Assets\Admin\js\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
-    <Content Include="Assets\Admin\js\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
-    <Content Include="Assets\Admin\js\ckeditor\skins\.DS_Store" />
-    <Content Include="Assets\Admin\js\ckeditor\skins\moono-lisa\readme.md" />
-    <Content Include="Assets\Admin\js\icheck\.DS_Store" />
-    <Content Include="Assets\Admin\js\iziModal\LICENSE" />
-    <Content Include="Assets\Admin\js\ladda\.DS_Store" />
-    <Content Include="Assets\Admin\js\summernote\.DS_Store" />
-    <Content Include="Assets\Admin\js\sweet-alert\.DS_Store" />
-    <Content Include="Assets\Admin\js\x-editable\.DS_Store" />
     <Content Include="Assets\Admin\sass\.DS_Store" />
     <Content Include="Assets\Admin\sass\bootstrap-sass\.DS_Store" />
     <Content Include="Assets\Admin\sass\bootstrap-sass\bootstrap\mixins\_alerts.scss" />
@@ -1469,7 +1576,69 @@
     <Content Include="Assets\Admin\sass\typographic\typographic.scss" />
     <Content Include="Assets\Admin\sass\_color-classes.scss" />
     <Content Include="Assets\Admin\sass\_helpers.scss" />
-    <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
+    <Content Include="Assets\Admin\js\.DS_Store" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\animate\bower.json" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\animate\LICENSE" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\animate\package.json" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\animate\README.md" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\bower.json" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\examples\data\gantt.json" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\examples\data\gauge.json" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\examples\data\map.json" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\examples\data\map_areas.json" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\examples\data\MSFT.csv" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\examples\data\MSFT_events.csv" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\examples\data\pie.csv" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\examples\data\pie.json" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\examples\data\serial.csv" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\examples\data\serial.json" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\examples\data\serial2.json" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\examples\data\TXN.csv" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\package.json" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\dataloader\readme.md" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\export\bower.json" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\export\libs\pdfmake\pdfmake.min.js.map" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\export\libs\xlsx\LICENSE" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\export\libs\xlsx\xlsx.min.map" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\export\LICENSE" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\export\package.json" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\export\README.md" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\responsive\bower.json" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\responsive\package.json" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\responsive\readme.md" />
+    <Content Include="Assets\Admin\js\amcharts\plugins\responsive\responsive.min.js.map" />
+    <Content Include="Assets\Admin\js\ckeditor\.DS_Store" />
+    <Content Include="Assets\Admin\js\ckeditor\CHANGES.md" />
+    <Content Include="Assets\Admin\js\ckeditor\LICENSE.md" />
+    <Content Include="Assets\Admin\js\ckeditor\plugins\scayt\CHANGELOG.md" />
+    <Content Include="Assets\Admin\js\ckeditor\plugins\scayt\LICENSE.md" />
+    <Content Include="Assets\Admin\js\ckeditor\plugins\scayt\README.md" />
+    <Content Include="Assets\Admin\js\ckeditor\plugins\wsc\LICENSE.md" />
+    <Content Include="Assets\Admin\js\ckeditor\plugins\wsc\README.md" />
+    <Content Include="Assets\Admin\js\ckeditor\README.md" />
+    <Content Include="Assets\Admin\js\ckeditor\samples\old\htmlwriter\assets\outputforflash\outputforflash.fla" />
+    <Content Include="Assets\Admin\js\ckeditor\samples\toolbarconfigurator\font\config.json" />
+    <Content Include="Assets\Admin\js\ckeditor\samples\toolbarconfigurator\font\fontello.eot" />
+    <Content Include="Assets\Admin\js\ckeditor\samples\toolbarconfigurator\font\fontello.ttf" />
+    <Content Include="Assets\Admin\js\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
+    <Content Include="Assets\Admin\js\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
+    <Content Include="Assets\Admin\js\ckeditor\skins\.DS_Store" />
+    <Content Include="Assets\Admin\js\ckeditor\skins\moono-lisa\readme.md" />
+    <Content Include="Assets\Admin\js\DataTables\Bootstrap-3.3.7\css\bootstrap-theme.css.map" />
+    <Content Include="Assets\Admin\js\DataTables\Bootstrap-3.3.7\css\bootstrap.css.map" />
+    <Content Include="Assets\Admin\js\DataTables\Bootstrap-3.3.7\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Assets\Admin\js\DataTables\Bootstrap-3.3.7\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Assets\Admin\js\DataTables\Bootstrap-3.3.7\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Assets\Admin\js\DataTables\Bootstrap-3.3.7\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\css\common.scss" />
+    <Content Include="Assets\Admin\js\DataTables\Buttons-1.2.4\css\mixins.scss" />
+    <Content Include="Assets\Admin\js\icheck\.DS_Store" />
+    <Content Include="Assets\Admin\js\iziModal\LICENSE" />
+    <Content Include="Assets\Admin\js\ladda\.DS_Store" />
+    <Content Include="Assets\Admin\js\summernote\.DS_Store" />
+    <Content Include="Assets\Admin\js\sweet-alert\.DS_Store" />
+    <Content Include="Assets\Admin\js\x-editable\.DS_Store" />
+    <Content Include="Areas\Admin\Views\Product\AddOrEdit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -1504,7 +1673,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
-    <Folder Include="Areas\Admin\Views\Product\" />
+    <Folder Include="Areas\Admin\Views\Order\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -1521,6 +1690,9 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{1d5435f4-8c19-4d1d-b306-b7bd89e5cb80}</Project>
       <Name>Models</Name>
@@ -1531,6 +1703,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">

@@ -33,8 +33,6 @@ namespace Models.EF
 
         public decimal? PromotionPrice { get; set; }
 
-        public bool? IncludeVAT { get; set; }
-
         public int? Quantity { get; set; }
 
         public int? CategoryID { get; set; }
@@ -42,23 +40,7 @@ namespace Models.EF
         [Column(TypeName = "ntext")]
         public string Detail { get; set; }
 
-        public int? Warranty { get; set; }
-
         public DateTime? CreatedDate { get; set; }
-
-        [StringLength(50)]
-        public string CreatedBy { get; set; }
-
-        public DateTime? ModifiedDate { get; set; }
-
-        [StringLength(50)]
-        public string ModifiedBy { get; set; }
-
-        [StringLength(250)]
-        public string MetaKeywords { get; set; }
-
-        [StringLength(250)]
-        public string MetaDescriptions { get; set; }
 
         public bool? Status { get; set; }
 
@@ -68,5 +50,10 @@ namespace Models.EF
         public int? ViewCounts { get; set; }
 
         public virtual ProductCategory ProductCategory { get; set; }
-    }
+
+		public Products()
+		{
+			ProductImage = "~/Admin/Assets/images/default.jpg";
+		}
+	}
 }

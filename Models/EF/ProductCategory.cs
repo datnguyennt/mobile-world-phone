@@ -24,28 +24,10 @@ namespace Models.EF
         [StringLength(250)]
         public string MetaTitle { get; set; }
 
-        public int? ParentID { get; set; }
-
         public int? DisplayOrder { get; set; }
 
-        [StringLength(250)]
-        public string SeoTitle { get; set; }
-
-        public DateTime? CreatedDate { get; set; }
-
-        [StringLength(50)]
-        public string CreatedBy { get; set; }
-
-        public DateTime? ModifiedDate { get; set; }
-
-        [StringLength(50)]
-        public string ModifiedBy { get; set; }
-
-        [StringLength(250)]
-        public string MetaKeywords { get; set; }
-
-        [StringLength(250)]
-        public string MetaDescriptions { get; set; }
+        [Column(TypeName = "text")]
+        public string Image { get; set; }
 
         public bool? Status { get; set; }
 

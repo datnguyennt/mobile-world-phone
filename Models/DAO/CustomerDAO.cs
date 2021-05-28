@@ -15,26 +15,26 @@ namespace Models.DAO
 		{
 			db = new PhoneDbContext();
 		}
-		public List<User> ListAll()
+		public List<KhachHang> ListAll()
 		{
 
-			return (from l in db.User
-					select l).OrderBy(x => x.UserID).ToList();
+			return (from l in db.KhachHang
+					select l).OrderBy(x => x.KHID).ToList();
 		}
 
-		public int Insert(User customer)
+		public int Insert(KhachHang customer)
 		{
-			db.User.Add(customer);
+			db.KhachHang.Add(customer);
 			db.SaveChanges();
-			return customer.UserID;
+			return customer.KHID;
 		}
 
 		public bool Delete(int id)
 		{
 			try
 			{
-				var cus = db.User.Find(id);
-				db.User.Remove(cus);
+				var cus = db.KhachHang.Find(id);
+				db.KhachHang.Remove(cus);
 				db.SaveChanges();
 				return true;
 			}
@@ -43,14 +43,6 @@ namespace Models.DAO
 				return false;
 			}
 
-		}
-
-		public bool ChangeStatus(int id)
-		{
-			var cus = db.User.Find(id);
-			cus.Status = !cus.Status;
-			db.SaveChanges();
-			return cus.Status;
 		}
 
 	}
